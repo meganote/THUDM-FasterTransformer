@@ -22,7 +22,7 @@
 
 namespace fastertransformer {
 
-#define MaxPerChannelLdkMultiplicationNum 8
+#define MaxPerChannelLdkMultiplicationNum 0
 
 template<typename T>
 void int8WeightPerChannelLdkMultiplicationLauncher(const int8_t* weight,
