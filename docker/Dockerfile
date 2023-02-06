@@ -7,7 +7,7 @@ RUN mkdir /FasterTransformer
 ADD . /FasterTransformer
 
 RUN bash /FasterTransformer/docker/setenv.sh
-RUN conda install -y pybind11
+RUN pip3 install pybind11[global] -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip3 install icetk transformers
 
 RUN bash /FasterTransformer/docker/install.sh
