@@ -4,7 +4,7 @@ ENV DATA_TYPE int4
 ENV CHECKPOINT_PATH /checkpoints
 
 RUN mkdir /FasterTransformer
-ADD . /FasterTransformer
+ADD .. /FasterTransformer
 
 RUN bash /FasterTransformer/docker/setenv.sh
 RUN pip3 install pybind11[global] -i https://pypi.tuna.tsinghua.edu.cn/simple
