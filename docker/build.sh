@@ -8,7 +8,8 @@ echo "$COMMIT" > COMMIT_INFO
 echo "$COMMIT_AUTHOR" >> COMMIT_INFO
 echo "$COMMIT_TIME" >> COMMIT_INFO
 
-python3 ./docker/check_cuda.py > SM_NUMBER
+#python3 ./docker/check_cuda.py > SM_NUMBER
+echo 70 > SM_NUMBER
 
 if [ "$1" = "debug" ]; then
     echo "Build in DEBUG mode with git files"
