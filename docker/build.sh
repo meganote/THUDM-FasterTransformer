@@ -16,4 +16,5 @@ if [ "$1" = "debug" ]; then
     echo "RUN apt install -y vim git" >> ./docker/Dockerfile
 fi
 echo "Building CUDA Docker Image with tag ftglm:latest"
-docker build -f ./docker/Dockerfile -t ftglm .
+docker build -f ./docker/Dockerfile -t ghcr.io/meganote/glm-130b-ft:v0.1.0 .
+docker push ghcr.io/meganote/glm-130b-ft:v0.1.0
