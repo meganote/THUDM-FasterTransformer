@@ -22,7 +22,7 @@ script_dir=$(dirname $script_path)
 
 OPTIONS_NCCL="NCCL_DEBUG=VERSION NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 CUDA_LAUNCH_BLOCKING=0"
 
-DISTRIBUTED_ARGS="--nproc_per_node $MPSIZE \
+DISTRIBUTED_ARGS="--nproc_per_node $MP_SIZE \
                   --nnodes 1 \
                   --node_rank 0 \
                   --master_addr localhost \
