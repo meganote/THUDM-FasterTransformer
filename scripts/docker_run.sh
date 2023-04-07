@@ -1,4 +1,4 @@
-MP_SIZE=4
+MP_SIZE=8
 DATA_TYPE=int4
 
 # Run server
