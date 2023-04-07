@@ -15,6 +15,6 @@ if [ "$1" = "debug" ]; then
     echo "Build in DEBUG mode with git files"
     echo "RUN apt install -y vim git" >> ./docker/Dockerfile
 fi
+
 echo "Building CUDA Docker Image with tag ftglm:latest"
-docker build -f ./docker/Dockerfile -t ghcr.io/meganote/glm-130b-ft:v0.1.0 .
-docker push ghcr.io/meganote/glm-130b-ft:v0.1.0
+docker build --build-arg BASE_IMAGE="nvcr.io/nvidia/pytorch:22.09-py3" -f ./docker/Dockerfile -t jt-llm/glm-130b-ft:v1.0.0 .

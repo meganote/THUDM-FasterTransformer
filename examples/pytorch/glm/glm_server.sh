@@ -2,8 +2,12 @@
 
 CUDA_LAUNCH_BLOCKING=1
 
-MPSIZE=4
-MAXSEQLEN=10000
+MP_SIZE=${MP_SIZE:-4}
+DATA_TYPE=${DATA_TYPE:-int4}
+MAX_SEQ_LEN=${MAX_SEQ_LEN:-10000}
+CHECKPOINT_PATH=${CHECKPOINT_PATH:-"/checkpoints"}
+
+#MAXSEQLEN=10000
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 
 #SAMPLING ARGS
@@ -24,12 +28,10 @@ DISTRIBUTED_ARGS="--nproc_per_node $MPSIZE \
                   --master_addr localhost \
                   --master_port $MASTER_PORT"
 
-CHECKPOINT_PATH="<your checkpoint path>"
-
 python -m torch.distributed.launch $DISTRIBUTED_ARGS $script_dir/glm_server.py \
-       --world_size $MPSIZE \
-       --tensor_para_size $MPSIZE \
+       --world_size $MP_SIZE \
+       --tensor_para_size $MP_SIZE \
        --pipeline_para_size 1 \
-       --max_seq_len $MAXSEQLEN \
+       --max_seq_len $MAX_SEQ_LEN \
        --ckpt_path $CHECKPOINT_PATH \
-       --data_type int4
+       --data_type $DATA_TYPE
