@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TAG=v1.0.1
+
 TARGET=$1
 COMMIT=$(git show --format="%H" --no-patch)
 COMMIT_AUTHOR=$(git show --format="%an" --no-patch)
@@ -13,9 +15,7 @@ if [ "$1" = "debug" ]; then
     echo "RUN apt install -y vim git" >> ./docker/Dockerfile
 fi
 
-echo "Building CUDA Docker Image with tag ftglm:latest"
-# V100
+echo "Building CUDA Docker Image"
 #python3 ./docker/check_cuda.py > SM_NUMBER
-echo 70 > SM_NUMBER
-docker build --build-arg BASE_IMAGE="nvcr.io/nvidia/pytorch:23.02-py3" -f ./docker/Dockerfile -t jt-llm/glm-130b-ft:v1.0.1 .
+docker build --build-arg BASE_IMAGE="nvcr.io/nvidia/pytorch:23.02-py3" -f ./docker/Dockerfile -t jt-llm/glm-130b-ft:${TAG} .
 
