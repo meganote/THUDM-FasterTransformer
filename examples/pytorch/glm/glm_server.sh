@@ -1,9 +1,17 @@
 #! /bin/bash
 
-MP_SIZE=${MP_SIZE:-8}
-DATA_TYPE=${DATA_TYPE:-int4}
-MAX_SEQ_LEN=${MAX_SEQ_LEN:-10000}
 CHECKPOINT_PATH=${CHECKPOINT_PATH:-"/checkpoints"}
+
+MP_SIZE=${MP_SIZE:-8}
+PIPELINE_PARA_SIZE=${PIPELINE_PARA_SIZE:-1}
+DATA_TYPE=${DATA_TYPE:-int4}
+
+MAX_SEQ_LEN=${MAX_SEQ_LEN:-10000}
+LAYER_NUM=${LAYER_NUM:-70}
+HEAD_NUM=${HEAD_NUM:-96}
+SIZE_PER_HEAD=${SIZE_PER_HEAD:-128}
+VOCAB_SIZE=${VOCAB_SIZE:150528}
+ROTARY_EMBEDDING_DIM=${ROTARY_EMBEDDING_DIM:-64}
 
 OPTIONS_NCCL="NCCL_DEBUG=VERSION NCCL_IB_DISABLE=0 NCCL_NET_GDR_LEVEL=2 CUDA_LAUNCH_BLOCKING=0"
 NCCL_DEBUG=${NCCL_DEBUG:-VERSION}
@@ -30,7 +38,12 @@ DISTRIBUTED_ARGS="--nproc_per_node $MP_SIZE \
 python -m torch.distributed.launch $DISTRIBUTED_ARGS $script_dir/glm_server.py \
        --world_size $MP_SIZE \
        --tensor_para_size $MP_SIZE \
-       --pipeline_para_size 1 \
+       --pipeline_para_size $PIPELINE_PARA_SIZE \
        --max_seq_len $MAX_SEQ_LEN \
        --ckpt_path $CHECKPOINT_PATH \
-       --data_type $DATA_TYPE
+       --data_type $DATA_TYPE \
+       --layer_num $LAYER_NUM \
+       --head_num $HEAD_NUM \
+       --size_per_head $SIZE_PER_HEAD \
+       --vocab_size $VOCAB_SIZE \
+       --rotary_embedding_dim $ROTARY_EMBEDDING_DIM
