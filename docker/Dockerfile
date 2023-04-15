@@ -25,5 +25,6 @@ RUN mkdir /workspace/FasterTransformer/build && \
     make -j12
 # cd /FasterTransformer/build && ./bin/gpt_gemm 1 1 128 96 128 49152 150528 1 8
 
-CMD ["bash", "/workspace/FasterTransformer/docker/start.sh"]
+ENTRYPOINT ["bash"]
+CMD ["/workspace/FasterTransformer/docker/start.sh"]
 EXPOSE 5000
