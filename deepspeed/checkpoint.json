@@ -1,0 +1,10 @@
+{
+  "type": "Megatron",
+  "version": 0.0,
+  "checkpoints": [
+    "/var/cache/fscache/glm-130b/glm-130b-sat-4-int4/49300/mp_rank_00_model_states.pt",
+    "/var/cache/fscache/glm-130b/glm-130b-sat-4-int4/49300/mp_rank_01_model_states.pt",
+    "/var/cache/fscache/glm-130b/glm-130b-sat-4-int4/49300/mp_rank_02_model_states.pt",
+    "/var/cache/fscache/glm-130b/glm-130b-sat-4-int4/49300/mp_rank_03_model_states.pt"
+  ]
+}
